@@ -1,6 +1,6 @@
 # tecweb
 
-###Matricula:
+###Matrícula:
 202140641
 
 ###Nombre:
@@ -12,6 +12,6 @@ Desarrollo de Aplicaciones Web
 ###Periodo:
 Otoño 2024
 
-###Descripcion:
+###Descripción:
 Este repositiorio se encuentra en la carperta C:\xampp\htdocs\tecweb y
-sirve con el proposito de guardar y compartir las actividades realizadas en el curso
+sirve con el propósito de guardar y compartir las actividades realizadas en el curso
