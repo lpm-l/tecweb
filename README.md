@@ -8,3 +8,6 @@ Luis Palalia Mani
 
 ###Materia:
 Desarrollo de Aplicaciones Web
+
+###Periodo:
+Otoño 2024
