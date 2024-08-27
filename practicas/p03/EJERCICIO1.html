@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Guacamole (clásico) receta</title>
 </head>
 <body>
-   <h1> Guacamole (clásico)</h1>
+   
+   <!-- La razón de usar h1 para esta parte es que este es el titulo
+    y es la parte mas importante del documento-->
+    <h1> Guacamole (clásico)</h1>
 
-   <blockquote>   
+
+    <!--Esta al ser una cita textual debia ser escrita de esta forma, aunque
+    falta poder dar una referencia sobre quien dijo esto originalmente
+    -->
+   <blockquote>  
+        <!--Se usa <p> porque esto de de salir como parrafo --> 
         <p>
             "Existe un condimento que no puede faltar en toda mesa mexicana. Algunos
             lo consideran una salsa, otros un aderezo, algunos incluso le llaman
@@ -16,14 +24,17 @@
         </p>
     </blockquote>
 
-
+    <!-- Esta parte es simplemente un parrafo, por lo que sale simplemente asi-->
     <p>
         Aunque el guacamole se prepara de diferentes formas según la zona de la que
         provenga la receta, la base suele ser la misma. Aquí te mostramos una receta
         muy completa para preparar esta conocida salsa mexicana:
     </p>
+
+    <!-- Se crea una lista para los ingredientes. Se usa u1 porque es una lista 
+     donde el orden de los elemntos no afecta-->
     <h2>Ingredientes</h2>
-    
+
     <u1>
         <li>4 o 5 aguacates maduros</li>
         <li>1 cebolla mediana (normal)</li>
@@ -34,6 +45,8 @@
         <li>Sal</li>
     </u1>
 
+    <!-- Se crea una lista para las istrucciones. En esta ocasion se decide usar o1, ya que
+        esta es una lista ordenada, cosa muy importante para una receta-->
     <h2>Instrucciones</h2>
     
     <o1>
@@ -51,5 +64,10 @@
         <li>Debe quedarnos un guacamole con los trozos visibles, pero opcionalmente puede pasarse por la batidora para dejarlo más cremoso y con una textura
         más uniforme.</li>
     </o1>
+
+    <!-- No fue necesario usar <figure> ya que no habia ningun elemnto del texto como 
+        imagen, video, etc. que necesitara ser puesta en la pagina.
+        Tampoco fue necesario usar <pre> ya que no habia necesidad de mostrar alguna parte
+        del texto de forma plana-->
 </body>
 </html>
