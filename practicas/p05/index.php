@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -113,14 +116,25 @@
     #Intentamos mostrar los valores con echo:
 
     echo "<p> Los valores de las variables son: <br>";
-    echo '$a = '."$a <br>";
-    echo '$b = '."$b <br>";
-    echo '$c = '."$c <br>";
-    echo '$d = '."$d <br>";
-    echo '$e = '."$e <br>";
-    echo '$f = '."$f <br>";
+    echo '$a = ';
+    var_dump($a);
+    echo "<br>".'$b = ';
+    var_dump($b);
+    echo "<br>".'$c = ';
+    var_dump($c);
+    echo "<br>".'$d = ';
+    var_dump($d);
+    echo "<br>".'$e = ';
+    var_dump($e);
+    echo "<br>".'$f = ';
+    echo var_dump($f);
 
-    
+    #Imprimimos con echo usando var_export()
+    echo '<br>Valores de $c y $e (usando var_export())'."<br>".'$c = ';
+    echo var_export($c, true);
+    echo "<br>".'$e = ';
+    echo var_export($e, true)."</p>";
+
     ?>
 </body>
 </html>
