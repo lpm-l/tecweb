@@ -144,11 +144,18 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
     echo " Versión de Apache y PHP: ".$_SERVER['SERVER_SOFTWARE']."<br>";
     echo "Nombre del sistema operativo del servidor: ".$_SERVER['HTTP_USER_AGENT']."<br>";
-    echo "Idioma del navegador: ".$_SERVER['HTTP_ACCEPT_LANGUAGE']."<br>";
+    echo "Idioma del navegador: ".$_SERVER['HTTP_ACCEPT_LANGUAGE']."<br></p>";
 
 
-
-
+    echo "<h3>Ejemplo de formulario usando POST(extra)</h3>";
     ?>
+
+    <form method="POST" action="http://localhost/tecweb/practicas/p05/supervariables.php">
+        <label for="form-valor1">Valor 1:</label><input type="text" name="valor1"><br>
+        <input type="submit" value="Enviar">
+    </form>
+
+
+    
 </body>
 </html>
