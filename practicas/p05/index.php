@@ -73,6 +73,14 @@
     echo "<br>Tipo y valores de z: ";
     echo var_dump($z)."</p>";
 
+    echo "<h2>Pregunta 4</h2>";
+    echo "<p>Monstrando las variables usando ".'$GLOBALS:';
+
+    echo "<br>".'$GLOBALS[\'a\'] :  '.$GLOBALS['a'];
+    echo "<br>".'$GLOBALS[\'b\'] :  '.$GLOBALS['b'];
+    echo "<br>".'$GLOBALS[\'c\'] :  '.$GLOBALS['c'];
+    echo "<br>".'$GLOBALS[\'z\'] :';
+    print_r($GLOBALS['z']);
 
     ?>
 </body>
