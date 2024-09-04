@@ -16,7 +16,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     echo 'Variables inválidas: myvar, $house*5'."<br>";
     echo "Estas variables no son válidas ya que tiene que iniciar con $, y no puede tener carácteres tales como * o /</p>";
 
-    #PREGUNTA 3
+    #PREGUNTA 2
     echo "<br><h2>Pregunta 2</h2>";
 
     #asignación de variables
@@ -134,6 +134,20 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     echo var_export($c, true);
     echo "<br>".'$e = ';
     echo var_export($e, true)."</p>";
+
+    #pregunta 7
+    echo "<h2>Pregunta 7</h2>";
+    
+    echo '<p>Valores del servidor usando $_SERVER: <br>';
+
+    // echo var_dump($_SERVER);
+
+    echo " Versión de Apache y PHP: ".$_SERVER['SERVER_SOFTWARE']."<br>";
+    echo "Nombre del sistema operativo del servidor: ".$_SERVER['HTTP_USER_AGENT']."<br>";
+    echo "Idioma del navegador: ".$_SERVER['HTTP_ACCEPT_LANGUAGE']."<br>";
+
+
+
 
     ?>
 </body>
