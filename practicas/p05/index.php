@@ -81,6 +81,24 @@
     echo "<br>".'$GLOBALS[\'c\'] :  '.$GLOBALS['c'];
     echo "<br>".'$GLOBALS[\'z\'] :';
     print_r($GLOBALS['z']);
+    echo "</p>";
+
+
+    echo "<h2>Pregunta 5</h2>";
+
+    /*Dar el valor de las variables $a, $b, $c 
+    al final del siguiente script:*/
+
+    $a = "7 personas";
+    $b = (integer) $a;
+    $a = "9E3";
+    $c = (double) $a;
+
+    echo "<p> Los valores de cada variables son: <br>";
+    echo 'Valor de $a : '."$a <br>";
+    echo 'Valor de $b : '."$b <br>";
+    echo 'Valor de $c : '."$c <br></p>";
+
 
     ?>
 </body>
