@@ -6,12 +6,14 @@
 </head>
 <body>
     <?php
+    #PREGUNTA 1
     echo "<h2>Pregunta 1</h2>";
     echo "<p>".'Variables válidas: $_myvar, $_7var, $myvar, $var7, $_element1'."<br>";
     echo 'Estas variables son válidas ya que todas empiezan con letras o guion bajo'."<br>";
     echo 'Variables inválidas: myvar, $house*5'."<br>";
     echo "Estas variables no son válidas ya que tiene que iniciar con $, y no puede tener carácteres tales como * o /</p>";
 
+    #PREGUNTA 3
     echo "<br><h2>Pregunta 2</h2>";
 
     #asignación de variables
@@ -37,11 +39,39 @@
 
     echo '¿Qué ocurrió? dentro del código php, se cambió el valor de $a a 
         PHP server, y el valor de $b se cambio a un apuntador al valor de $a
-        El valor de $c siempre fue un apuntador a $a, por eso los tres tiene los mismo';
+        El valor de $c siempre fue un apuntador a $a, por eso los tres tiene los mismo'."</p>";
 
+
+    #PREGUNTA 3
+    echo "<br><h2>Pregunta 3</h2>";
+    $a = "PHP5";
+    echo "<p>Tipo y valor de a: ";
+    echo var_dump($a);
+
+    $z[] = &$a;
+    echo "<br>Tipo y valores de z: ";
+    echo var_dump($z);
+
+    $b = "5a version de PHP";
+    echo "<br>Tipo y valor de b: ";
+    echo var_dump($b);
+
+    $c = $b*10;
+    echo "<br>Tipo y valor de c (con un posible error): ";
+    echo var_dump($c);
+
+    $a .= $b;
+    echo "<br>Tipo y valor de a: ";
+    echo var_dump($a);
+
+    $b *= $c;
     
+    echo "<br>Tipo y valor de b: ";
+    echo var_dump($b);
 
-
+    $z[0] = "MySQL";
+    echo "<br>Tipo y valores de z: ";
+    echo var_dump($z)."</p>";
 
 
     ?>
