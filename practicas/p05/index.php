@@ -10,7 +10,7 @@
     echo "<p>".'Variables válidas: $_myvar, $_7var, $myvar, $var7, $_element1'."<br>";
     echo 'Estas variables son válidas ya que todas empiezan con letras o guion bajo'."<br>";
     echo 'Variables inválidas: myvar, $house*5'."<br>";
-    echo "Estas variables no son válidas ya que tiene que iniciar con $, y no puede tener carácteres tales como * o /</p>"
+    echo "Estas variables no son válidas ya que tiene que iniciar con $, y no puede tener carácteres tales como * o /</p>";
 
     echo "<br><h2>Pregunta 2</h2>";
 
@@ -20,10 +20,29 @@
     $b = 'MySQL';
     $c = &$a;
 
-    echo "Los valores de las variables son:<br>";
-    echo "a = $a";
-    echo "b = $b";
-    echo "c = $c";
+    echo "<p>Los valores de las variables son:<br>";
+    echo "a = $a<br>";
+    echo "b = $b<br>";
+    echo "c = $c<br>";
+
+    #nueva asignación
+
+    $a = "PHP server";
+    $b = &$a;
+
+    echo "Los valores de las variables nuevas son:<br>";
+    echo "a = $a<br>";
+    echo "b = $b<br>";
+    echo "c = $c<br>";
+
+    echo '¿Qué ocurrió? dentro del código php, se cambió el valor de $a a 
+        PHP server, y el valor de $b se cambio a un apuntador al valor de $a
+        El valor de $c siempre fue un apuntador a $a, por eso los tres tiene los mismo';
+
+    
+
+
+
 
     ?>
 </body>
