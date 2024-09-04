@@ -99,7 +99,28 @@
     echo 'Valor de $b : '."$b <br>";
     echo 'Valor de $c : '."$c <br></p>";
 
+    echo "<h2>Pregunta 6</h2>";
 
+    //Asignamos un valor booleano como se pide en el documento
+
+    $a = "0";
+    $b = "TRUE";
+    $c = FALSE;
+    $d = ($a OR $b);
+    $e = ($a AND $c);
+    $f = ($a XOR $b);
+
+    #Intentamos mostrar los valores con echo:
+
+    echo "<p> Los valores de las variables son: <br>";
+    echo '$a = '."$a <br>";
+    echo '$b = '."$b <br>";
+    echo '$c = '."$c <br>";
+    echo '$d = '."$d <br>";
+    echo '$e = '."$e <br>";
+    echo '$f = '."$f <br>";
+
+    
     ?>
 </body>
 </html>
