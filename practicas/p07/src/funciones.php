@@ -16,17 +16,10 @@
     }
 
     function aleatorio(){
-            $uno = rand(0,100);
-            $dos = rand(0,100);
-            $tres = rand(0,100);
             $matrix = array();
             $k = 0;
-            $matrix[0][$k] = $uno;
-            $matrix[1][$k] = $dos;
-            $matrix[2][$k] = $tres;
-            echo "<br>$uno $dos $tres<br>";
-
-            while(!($uno%2==0 && $dos%2!=0 && $tres%2==0)){
+            
+            do{
                 $k += 1;
                 
                 $uno = rand(0,100);
@@ -37,9 +30,13 @@
                 $matrix[1][$k] = $dos;
                 $matrix[2][$k] = $tres;
                 echo "$uno $dos $tres<br>";
-            }
+            }while(!($uno%2==0 && $dos%2!=0 && $tres%2==0));
 
         echo "Se hicieron ".($k+1)." iteraciones con un total de ".(($k+1)*3)." numeros generados";
+
+    }
+
+    function entero(){
 
     }
 ?>
