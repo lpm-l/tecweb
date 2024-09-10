@@ -18,6 +18,15 @@
     echo multiplo();
     ?>
 
+    <?php
+        include_once('src/funciones.php');
+        aleatorio();
+    ?>
+
+
+
+
+
     <h2>Ejemplo de POST</h2>
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
         Name: <input type="text" name="name"><br>
