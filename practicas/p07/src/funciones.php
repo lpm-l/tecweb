@@ -56,4 +56,14 @@
             echo "<br>Se hicieron $k iteraciones";
         }
     }
+
+    function TestBlockHTML($replStr) {
+            echo "<h1>{$replStr}</h1>";
+      
+    } 
+
+    function Hola(){
+        echo "hola ::)))))))))))))))))))<br>";
+    }
+    
 ?>

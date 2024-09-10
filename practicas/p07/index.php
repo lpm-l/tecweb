@@ -34,6 +34,10 @@
         entero(0,15545);
     ?>
 
+    <?php
+        include_once('src/funciones.php');
+        TestBlockHTML("HOLA:))))))))))");
+    ?>
 
 
 
