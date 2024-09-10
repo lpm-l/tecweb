@@ -23,6 +23,17 @@
         aleatorio();
     ?>
 
+    <h2>Ejemplo Tres</h2>
+
+    <form  method="GET">
+        <label for="form-valor1">Numero:</label><input type="number" name="dado"><br>
+        <input type="submit" value="Enviar">
+    </form>
+    <?php
+        include_once('src/funciones.php');
+        entero(0,15545);
+    ?>
+
 
 
 
