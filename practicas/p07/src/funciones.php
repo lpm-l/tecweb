@@ -6,12 +6,15 @@
                 $num = $_GET['numero'];
                 if ($num%5==0 && $num%7==0)
                 {
+                    echo var_dump($num);
                     return '<h3>R= El número '.$num.' SÍ es múltiplo de 5 y 7.</h3><br>';
                 }
                 else
                 {
+                    echo var_dump($num);
                     return '<h3>R= El número '.$num.' NO es múltiplo de 5 y 7.</h3><br>';
                 }
+                
             }
     }
 
@@ -31,7 +34,7 @@
                 $k += 1;
             }while(!($uno%2==0 && $dos%2!=0 && $tres%2==0));
 
-        echo "Se hicieron ".($k+1)." iteraciones con un total de ".(($k+1)*3)." numeros generados";
+        echo "<p>Se hicieron ".($k+1)." iteraciones con un total de ".(($k+1)*3)." numeros generados</p>";
 
     }
 
@@ -40,20 +43,20 @@
             $aleat = rand ($min*10, $max*10) / 10;
             $int = (int)$aleat;
             $k = 0;
-            while(($aleat - $int) > 0){
+            $hm = (int)$_GET['dado'];
+            $test = (($aleat - $int) == 0) && ($int%$hm == 0);
+            while(!$test){
+                echo "<p>$aleat no es entero y multiplo de $hm</p>";
                 $aleat = rand($min*10, $max*10) / 10;
-                $int = (int)$aleat ;
+                $int = (int)$aleat;
                 $k += 1;
+                $test = (($aleat - $int) == 0) && ($int%$hm == 0);
             }
-            echo "El numero $aleat es entero. <br>";
-            $hm = $_GET['dado'];
-            if ($aleat%$hm == 0){
-                echo "Y tambien es multiplo de $hm";
-            }
-            else {
-                echo "Pero no es multiplo de $hm";
-            }
-            echo "<br>Se hicieron $k iteraciones";
+            echo "<h3>El numero $aleat es entero<br>";
+
+            echo "Y tambien es multiplo de $hm</h3>";
+
+            echo "<br><p>Se hicieron ".($k+1)." iteraciones</p>";
         }
     }
 

@@ -18,13 +18,19 @@
     echo multiplo();
     ?>
 
+    <h2>Ejercicio 2</h2>
+
+    <p>Generación repetitiva de 3 números aleatorios</p>
+
     <?php
         include_once('src/funciones.php');
         aleatorio();
     ?>
 
-    <h2>Ejemplo Tres</h2>
+    <h2>Ejercicio 3</h2>
 
+    <p>número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
+    
     <form  method="GET">
         <label for="form-valor1">Numero:</label><input type="number" name="dado"><br>
         <input type="submit" value="Enviar">
