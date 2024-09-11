@@ -40,34 +40,25 @@
         entero(0,15545);
     ?>
 
-    <?php
-        include_once('src/funciones.php');
-        TestBlockHTML("HOLA:))))))))))");
-    ?>
-
+    <h2>Ejercicio 4</h2>
+    <p>Tabla del alfabeto.</p>
     <?php
         include_once('src/funciones.php');
         letras();
     ?>
 
 
-
-
-
-    <h2>Ejemplo de POST</h2>
-    <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
-        Name: <input type="text" name="name"><br>
-        E-mail: <input type="text" name="email"><br>
-        <input type="submit">
+    <h2>Ejercicio 5</h2>
+    <form method="post" action="src/respuesta6.php">
+        Edad: <input type="number" name="edad"><br>
+        Sexo: 
+       <select name="sexo" size="1">
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+        </select>
+        <br>
+        <input value="Verificar" type="submit">
     </form>
-    <br>
-    <?php
-        if(isset($_POST["name"]) && isset($_POST["email"]))
-        {
-            echo $_POST["name"];
-            echo '<br>';
-            echo $_POST["email"];
-        }
-    ?>
+    
 </body>
 </html>

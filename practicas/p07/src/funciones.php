@@ -60,15 +60,6 @@
         }
     }
 
-    function TestBlockHTML($replStr) {
-            echo "<h1>{$replStr}</h1>";
-      
-    } 
-
-    function Hola(){
-        echo "hola ::)))))))))))))))))))<br>";
-    }
-
     function letras(){
         $alfabeto = array();
         for ($i = 97; $i <= 122; $i++) {
@@ -79,7 +70,20 @@
             echo "| $key    |   $value |<br>";
         }
         echo "</p>";
-
     }
+ 
+   
+    function TestBlockHTML ($replStr) {
+        if ($_POST['param'] == 'page1' ){
+            
+            <<<HTML
+                <html>
+                <body><h1>{$replStr}</h1>
+                </body>
+                </html>
+            HTML;
+            echo "hola mundo";
+        }
+    }
+    ?>
     
-?>
