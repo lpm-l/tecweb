@@ -72,18 +72,5 @@
         echo "</p>";
     }
  
-   
-    function TestBlockHTML ($replStr) {
-        if ($_POST['param'] == 'page1' ){
-            
-            <<<HTML
-                <html>
-                <body><h1>{$replStr}</h1>
-                </body>
-                </html>
-            HTML;
-            echo "hola mundo";
-        }
-    }
     ?>
     

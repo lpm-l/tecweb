@@ -5,6 +5,8 @@
   <title>Verificación de edad</title>
 </head>
 <body>
+    <h1>Resultados de la búsqueda de matriz</h1>
+
     <?php
         $matricula = array();
         $vehi = array();
@@ -20,12 +22,44 @@
         
 
         for ($i =0; $i<15; $i++){
-            $auto[$i] = ["Marca" => $marcas[$i],"Modelo" => $modelos[$i],"Tipo" => $tipos[$i] ];
-            $propietario[$i] = ["Nombre"=>$nombres[$i], "Ciudad" => $ciudades[$i], "Direccion" => $direcciones[$i]];
-            $vehi[$i] = ["AUTO" => $auto[$i], "PROPIETARIO" => $propietario[$i]];
-            $matricula[$i] = [$matriculas[$i]=> $vehi[$i]];
-            echo var_dump($matricula[$i])."<br>";
+            $auto[$matriculas[$i]] = ["Marca" => $marcas[$i],"Modelo" => $modelos[$i],"Tipo" => $tipos[$i] ];
+            $propietario[$matriculas[$i]] = ["Nombre"=>$nombres[$i], "Ciudad" => $ciudades[$i], "Direccion" => $direcciones[$i]];
+            $vehi[$matriculas[$i]] = ["AUTO" => $auto[$matriculas[$i]], "PROPIETARIO" => $propietario[$matriculas[$i]]];
+            $matricula[$matriculas[$i]] = $vehi[$matriculas[$i]];
+            
+        }   
+        function mostrarTodo($matricula){
+            foreach ($matricula as $key => $value) {
+                echo "<h3>Matrícula $key </h3>";
+                foreach ($value as $key2 => $value2){
+                    foreach ($value2 as $fkey => $fvalue){
+                        echo "<h3>$fkey :  $fvalue</h3>";
+                    }
+                }
+                echo "<br>";
+            }
         }
+    
+        function mostrarUno($vehi){
+            $mati = $_POST['mat'];
+            echo "<h3>Matricula:\t$mati</h3>"; 
+            foreach($vehi as $concep => $arr){
+                foreach($arr as $valor => $var){
+                    echo "<h3>$valor:\t$var</h3>";
+                }
+            }
+        }     
+
+        if (isset($_POST['uno']) && isset($_POST['mat'])){
+            $id = $_POST['mat'];
+            mostrarUno($vehi[$id]);
+        }
+        if (isset($_POST['todo'])){
+            mostrarTodo($matricula);
+        }
+
     ?>
+
+
 </body>
 </html> 

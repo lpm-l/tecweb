@@ -59,6 +59,17 @@
         <br>
         <input value="Verificar" type="submit">
     </form>
-    
+
+
+    <h2>Ejercicio 6</h2>
+    <form action="src/respuesta7.php" method="post">
+        Matricula: <input type="text" name="mat"><br>
+        <br>
+        <input value="Buscar matrícula" type="submit" name="uno">
+    </form>
+
+    <form action="src/respuesta7.php" method="post">
+        <input value="Mostrar todo" type="submit" name="todo">
+    </form>
 </body>
 </html>
