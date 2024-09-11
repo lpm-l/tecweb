@@ -68,5 +68,18 @@
     function Hola(){
         echo "hola ::)))))))))))))))))))<br>";
     }
+
+    function letras(){
+        $alfabeto = array();
+        for ($i = 97; $i <= 122; $i++) {
+            $alfabeto[$i] = chr($i);
+        }
+        echo '<p>| $key    |   $value |<br>';
+        foreach ($alfabeto as $key => $value) {
+            echo "| $key    |   $value |<br>";
+        }
+        echo "</p>";
+
+    }
     
 ?>

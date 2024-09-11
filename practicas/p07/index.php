@@ -30,9 +30,9 @@
     <h2>Ejercicio 3</h2>
 
     <p>número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
-    
+
     <form  method="GET">
-        <label for="form-valor1">Numero:</label><input type="number" name="dado"><br>
+        <label> Numero:</label><input type="number" name="dado"><br>
         <input type="submit" value="Enviar">
     </form>
     <?php
@@ -44,6 +44,12 @@
         include_once('src/funciones.php');
         TestBlockHTML("HOLA:))))))))))");
     ?>
+
+    <?php
+        include_once('src/funciones.php');
+        letras();
+    ?>
+
 
 
 
