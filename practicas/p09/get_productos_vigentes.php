@@ -72,7 +72,7 @@
 						<td><?= $data[$j]['precio'] ?></td>
 						<td><?= $data[$j]['unidades'] ?></td>
 						<td><?= utf8_encode($data[$j]['detalles']) ?></td>
-						<td><img src=<?= $data[$j]['imagen'] ?> ></td>
+						<td><img src=<?= $data[$j]['imagen'] ?> style="max-width: 300px; max-height: 300px;" ></td>
 					</tr>
 
                     <?php
