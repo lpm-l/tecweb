@@ -19,8 +19,8 @@ if ($link->connect_errno)
 
 /** Crear una tabla que no devuelve un conjunto de resultados */
 $sql = "INSERT INTO productos select null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}' 
-from dual WHERE NOT EXISTS (SELECT 1 FROM prod WHERE marca ='{$marca}' AND nombre = '{$nombre}' AND modelo = '{$modelo}')";
-
+from dual WHERE NOT EXISTS (SELECT 1 FROM productos WHERE nombre = '{$nombre}' AND marca = '{$marca}' AND modelo = '{$modelo}')";
+echo $sql;
 
 
 #$sql = "INSERT INTO prod select null, 5,{$num},{$num} from dual WHERE NOT EXISTS (SELECT 1 FROM prod WHERE num1 = {$num} AND num2 = {$num})";
