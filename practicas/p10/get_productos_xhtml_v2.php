@@ -66,7 +66,7 @@
 
                 alert("Name: " + name + "\nMarca: " + marca + "\nModelo: " + modelo+ "\nPrecio: " + precio);
 
-                send2form(name, marca, modelo, precio, uni, det, img)
+                send2form(name, marca, modelo, precio, uni, det, img, rowId)
             }
         </script>
 
@@ -127,7 +127,7 @@
 		<?php endif; ?>
 
 		<script>
-            function send2form(name, marca, modelo, precio, uni, det, img) {
+            function send2form(name, marca, modelo, precio, uni, det, img, rowId) {
                 var form = document.createElement("form");
 
 				//Nombre
@@ -179,7 +179,14 @@
                 imgIn.value = img;
                 form.appendChild(imgIn);
 
-                console.log(form);
+				//id
+				var idIn = document.createElement("input");
+                idIn.type = 'number';
+                idIn.name = 'idProd';
+                idIn.value = rowId;
+                form.appendChild(idIn);
+                
+				//console.log(form);
 
                 form.method = 'POST';
                 form.action = 'https://localhost/tecweb/practicas/p10/formulario_productos_v2.php';  
