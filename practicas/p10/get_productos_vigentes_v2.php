@@ -60,13 +60,14 @@
 				var pp = "\"";
 				var temp = img.substring(img.indexOf(pp)+1)
 				img = temp.substring(0,temp.indexOf(pp))
+				
 
 
 
 
                 alert("Name: " + name + "\nMarca: " + marca + "\nModelo: " + modelo+ "\nPrecio: " + precio);
 
-                send2form(name, marca, modelo, precio, uni, det, img)
+                send2form(name, marca, modelo, precio, uni, det, img, rowId)
             }
         </script>
 
@@ -96,7 +97,7 @@
 				<tbody>
                     <?php for ($j = 0; $j < count($data); $j++){ ?>
 					<tr id="<?= $data[$j]['id'] ?>">
-						<th scope="row"><?= $data[$j]['id'] ?></th>
+						<th scope="row-data"><?= $data[$j]['id'] ?></th>
 						<td class="row-data"><?= $data[$j]['nombre'] ?></td>
 						<td class="row-data"><?= $data[$j]['marca'] ?></td>
 						<td class="row-data"><?= $data[$j]['modelo'] ?></td>
@@ -127,7 +128,7 @@
 		<?php endif; ?>
 
 		<script>
-            function send2form(name, marca, modelo, precio, uni, det, img) {
+            function send2form(name, marca, modelo, precio, uni, det, img, rowId) {
                 var form = document.createElement("form");
 
 				//Nombre
@@ -179,7 +180,15 @@
                 imgIn.value = img;
                 form.appendChild(imgIn);
 
-                console.log(form);
+
+				//id
+				var idIn = document.createElement("input");
+                idIn.type = 'number';
+                idIn.name = 'idProd';
+                idIn.value = rowId;
+                form.appendChild(idIn);
+                
+				//console.log(form);
 
                 form.method = 'POST';
                 form.action = 'https://localhost/tecweb/practicas/p10/formulario_productos_v2.php';  

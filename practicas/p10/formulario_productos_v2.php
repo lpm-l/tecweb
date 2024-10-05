@@ -13,52 +13,127 @@
     <script type="text/javascript">
       function verificarEntradas()
 			{
+        var name = document.getElementById('form-name').value;
+        var marca = document.getElementById('marca').value;
+        var modelo = document.getElementById('form-model').value;
+        var precio = document.getElementById('form-precio').value; 
+        var uni = document.getElementById('form-uni').value;
+        var det = document.getElementById('form-det').value;
+        var img = document.getElementById('form-img').value;
+
+
 				var correcto = true;
-        if (document.getElementById('form-name').value.length > 100 || document.getElementById('form-name').value.length == 0){
+        if (name.length > 100 || name.length == 0){
           correcto = false;
           alert('Error en Nombre');
         }
-        if (document.getElementById('form-model').value.length > 25 || !document.getElementById('form-model').value.match(/^[0-9a-zA-Z]+$/)){
+        if (modelo.length > 25 || !modelo.match(/^[0-9a-zA-Z]+$/)){
           correcto=false;
           alert('Error en Modelo');
         }
         
-        if (document.getElementById('form-precio').value < 99.99){
+        if (precio < 99.99){
           correcto=false;
           alert('Error en Precio');
         }
 
-        if (document.getElementById('form-precio').value == ''){
+        if (precio == ''){
           correcto=false;
           alert('Error en Precio: No puede estar vacio');
         }
 
-        if (document.getElementById('form-det').value.length > 250){
+        if (det.length > 250){
           correcto=false;
           alert('Error en Detalles: Demasiado largo');
         }
 
 
-        if (document.getElementById('form-uni').value == ''){
+        if (uni == ''){
           correcto=false;
           alert('Error en Unidades: No puede estar vacio');
         }
 
-        if (document.getElementById('form-uni').value < 0){
+        if (uni < 0){
           correcto=false;
           alert('Error en Unidades');
         }
 
-        if (document.getElementById('form-img').value == ''){
-          document.getElementById('form-img').value = "img/default.jpg"
+        if (img == ''){
+          img = "img/default.jpg";
         }
 
 
         
-        if (correcto)
-          alert('TODO BIEN')
+        if (correcto){
+          alert('TODO BIEN');
+          send2form(name , marca, modelo, precio, uni, det, img )
+        }
+
 			}
     </script>
+
+    <script>
+          function send2form(name , marca, modelo, precio, uni, det, img ) {
+            var form = document.createElement("form");
+
+				//Nombre
+            var nombreIn = document.createElement("input");
+            nombreIn.type = 'text';
+            nombreIn.name = 'nombre';
+            nombreIn.value = name;
+            form.appendChild(nombreIn);
+
+				//Marca
+		 		var marcaIn = document.createElement("input");
+                marcaIn.type = 'text';
+                marcaIn.name = 'marca';
+                marcaIn.value = marca;
+                form.appendChild(marcaIn);
+
+				//Modelo
+				var modeloIn = document.createElement("input");
+                modeloIn.type = 'text';
+                modeloIn.name = 'modelo';
+                modeloIn.value = modelo;
+                form.appendChild(modeloIn);
+
+				//Precio
+				var precioIn = document.createElement("input");
+                precioIn.type = 'number';
+                precioIn.name = 'precio';
+                precioIn.value = precio;
+                form.appendChild(precioIn);
+
+				//unidades
+				var unidaIn = document.createElement("input");
+                unidaIn.type = 'number';
+                unidaIn.name = 'uni';
+                unidaIn.value = uni;
+                form.appendChild(unidaIn);
+
+				//detalles
+				var detaIn = document.createElement("input");
+                detaIn.type = 'text';
+                detaIn.name = 'det';
+                detaIn.value = det;
+                form.appendChild(detaIn);
+
+				//imagen
+				var imgIn = document.createElement("input");
+                imgIn.type = 'text';
+                imgIn.name = 'img';
+                imgIn.value = img;
+                form.appendChild(imgIn); 
+
+                console.log(form);
+
+                form.method = 'POST';
+                form.action = 'https://localhost/tecweb/practicas/p10/update_producto.php';  
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        </script>
   </head>
 
   <body>
@@ -72,7 +147,8 @@
         <legend>Producto</legend>
 
         <ul>
-          <li><label for="form-name">Nombre:</label> <input type="text" name="name" id="form-name" value="<?=!empty($_POST['nombre'])?$_POST['nombre']:$_GET['nombre'] ?>"></li>
+        <li><label for="form-name">ID:</label> <input type="text" name="idProd" id="form-name" value="<?=!empty($_POST['idProd'])?$_POST['idProd']:$_GET['idProd'] ?>" readonly /></li>
+          <li><label for="form-name">Nombre:</label> <input type="text" name="name" id="form-name" value="<?=!empty($_POST['nombre'])?$_POST['nombre']:$_GET['nombre'] ?>"/></li>
           <li><label for="form-marca">Marca:</label> <!--<input type="text" name="marca" id="form-marca"></li>-->   
 
           <select id="marca" >
