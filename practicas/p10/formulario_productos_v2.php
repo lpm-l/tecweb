@@ -20,7 +20,7 @@
         var uni = document.getElementById('form-uni').value;
         var det = document.getElementById('form-det').value;
         var img = document.getElementById('form-img').value;
-
+        var id = document.getElementById('form-id').value;
 
 				var correcto = true;
         if (name.length > 100 || name.length == 0){
@@ -66,14 +66,14 @@
         
         if (correcto){
           alert('TODO BIEN');
-          send2form(name , marca, modelo, precio, uni, det, img )
+          send2form(name , marca, modelo, precio, uni, det, img, id )
         }
 
 			}
     </script>
 
     <script>
-          function send2form(name , marca, modelo, precio, uni, det, img ) {
+          function send2form(name , marca, modelo, precio, uni, det, img, id ) {
             var form = document.createElement("form");
 
 				//Nombre
@@ -124,8 +124,13 @@
                 imgIn.name = 'img';
                 imgIn.value = img;
                 form.appendChild(imgIn); 
+				//ID
+				var idIn = document.createElement("input");
+                idIn.type = 'text';
+                idIn.name = 'id';
+                idIn.value = id;
+                form.appendChild(idIn); 
 
-                console.log(form);
 
                 form.method = 'POST';
                 form.action = 'https://localhost/tecweb/practicas/p10/update_producto.php';  
@@ -147,7 +152,7 @@
         <legend>Producto</legend>
 
         <ul>
-        <li><label for="form-name">ID:</label> <input type="text" name="idProd" id="form-name" value="<?=!empty($_POST['idProd'])?$_POST['idProd']:$_GET['idProd'] ?>" readonly /></li>
+        <li><label for="form-name">ID:</label> <input type="text" name="idProd" id="form-id" value="<?=!empty($_POST['idProd'])?$_POST['idProd']:$_GET['idProd'] ?>" readonly /></li>
           <li><label for="form-name">Nombre:</label> <input type="text" name="name" id="form-name" value="<?=!empty($_POST['nombre'])?$_POST['nombre']:$_GET['nombre'] ?>"/></li>
           <li><label for="form-marca">Marca:</label> <!--<input type="text" name="marca" id="form-marca"></li>-->   
 
