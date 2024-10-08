@@ -59,7 +59,7 @@
         }
 
         if (img == ''){
-          img = "img/default.jpg";
+          img = "http://localhost/img/default.jpg";
         }
 
 

@@ -26,3 +26,13 @@
     
 
 ?> 
+
+<!DOCTYPE html>
+<html>
+<body>
+<h3> Regresar a la tabla </h3>
+<form id="formulatioProd" action="http://localhost/tecweb/practicas/p10/get_productos_vigentes_v3.php" method="post">
+<p><input type="submit" value="Regresar a la tabla" onclick=""></p>
+</form>
+</body>
+</html> 
