@@ -8,6 +8,67 @@ var baseJSON = {
     "imagen": "http://localhost/img/default.png"
   };
 
+
+
+
+function verificarEntradas(finalJSON){
+    var name = finalJSON['nombre']
+    var marca = finalJSON['marca']
+    var modelo = finalJSON['modelo']
+    var precio = finalJSON['precio']
+    var uni = finalJSON['unidades']
+    var det = finalJSON['detalles']
+    var img = finalJSON['imagen']
+
+    var correcto = true;
+    if (name.length > 100 || name.length == 0){
+        correcto = false;
+        alert('Error en Nombre');
+    }
+
+    if (modelo.length > 25 || !modelo.match(/^[0-9a-zA-Z]+$/)){
+        correcto=false;
+        alert('Error en Modelo');
+    }
+
+    if (precio < 99.99){
+        correcto=false;
+        alert('Error en Precio');
+    }
+
+    if (precio == ''){
+        correcto=false;
+        alert('Error en Precio: No puede estar vacio');
+    }
+
+    if (det.length > 250){
+        correcto=false;
+        alert('Error en Detalles: Demasiado largo');
+    }
+
+
+    if (uni == ''){
+        correcto=false;
+        alert('Error en Unidades: No puede estar vacio');
+    }
+
+    if (uni < 0){
+        correcto=false;
+        alert('Error en Unidades');
+    }
+
+    if (img == ''){
+        img = "img/default.jpg";
+    }
+
+    if (correcto){
+        alert('TODO BIEN');
+        return true;
+    }else
+        return false;
+
+
+}
 // FUNCIÓN CALLBACK DE BOTÓN "Buscar"
 function buscarID(e) {
     /**
@@ -70,20 +131,28 @@ function agregarProducto(e) {
     var finalJSON = JSON.parse(productoJsonString);
     // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
     finalJSON['nombre'] = document.getElementById('name').value;
-    // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
+    
+    //Se verifican las entradas
+    let trust = verificarEntradas(finalJSON);
 
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
-    client.open('POST', './backend/create.php', true);
-    client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
-    client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
-        }
-    };
-    client.send(productoJsonString);
+    if (trust){
+        // SE OBTIENE EL STRING DEL JSON FINAL
+        productoJsonString = JSON.stringify(finalJSON,null,2);
+
+        // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+        var client = getXMLHttpRequest();
+        client.open('POST', './backend/create.php', true);
+        client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
+        client.onreadystatechange = function () {
+            // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
+            if (client.readyState == 4 && client.status == 200) {
+                console.log(client.responseText);
+            }
+        };
+        client.send(productoJsonString);
+
+        console.log(productoJsonString)
+    }else alert('ALGO ESTÁ MAL');
 }
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
