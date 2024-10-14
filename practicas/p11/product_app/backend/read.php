@@ -4,7 +4,6 @@
         include_once __DIR__.'/database.php';
 
         // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-        echo "SELECT * FROM productos WHERE {$query}";
         if ( $result = $conexion->query("SELECT * FROM productos WHERE {$query}") ) {
             // SE OBTIENEN LOS RESULTADOS
 			$row = $result->fetch_all(MYSQLI_ASSOC);
@@ -31,7 +30,6 @@
     $data = array();
     // SE VERIFICA HABER RECIBIDO EL ID
     if( isset($_POST['test']) && $_POST['test']!= '') {
-        echo "POR ID\n\n";
         $id = $_POST['test'];
         $nombre = $_POST['nombre'];
         $marca = $_POST['marca'];

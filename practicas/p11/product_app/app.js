@@ -150,29 +150,33 @@ function buscarProducto(e) {
             // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
             let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
             
-            // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-            if(Object.keys(productos).length > 0) {
-                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                let descripcion = '';
-                    descripcion += '<li>precio: '+productos.precio+'</li>';
-                    descripcion += '<li>unidades: '+productos.unidades+'</li>';
-                    descripcion += '<li>modelo: '+productos.modelo+'</li>';
-                    descripcion += '<li>marca: '+productos.marca+'</li>';
-                    descripcion += '<li>detalles: '+productos.detalles+'</li>';
+            let template = '';
+            for (let i = 0; i < productos.length; i++){
+                // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
                 
-                // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
-                let template = '';
-                    template += `
-                        <tr>
-                            <td>${productos.id}</td>
-                            <td>${productos.nombre}</td>
-                            <td><ul>${descripcion}</ul></td>
-                        </tr>
-                    `;
+                if(Object.keys(productos[i]).length > 0) {
+                    // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
+                    let descripcion = '';
+                        descripcion += '<li>precio: '+productos[i].precio+'</li>';
+                        descripcion += '<li>unidades: '+productos[i].unidades+'</li>';
+                        descripcion += '<li>modelo: '+productos[i].modelo+'</li>';
+                        descripcion += '<li>marca: '+productos[i].marca+'</li>';
+                        descripcion += '<li>detalles: '+productos[i].detalles+'</li>';
+                    
+                    // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
+                    
+                        template += `
+                            <tr>
+                                <td>${productos[i].id}</td>
+                                <td>${productos[i].nombre}</td>
+                                <td><ul>${descripcion}</ul></td>
+                            </tr>
+                        `;
 
-                // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-                document.getElementById("productos").innerHTML = template;
+                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"   
+                }
             }
+            document.getElementById("productos").innerHTML = template;
         }
     };
     client.send("test="+id+"&nombre="+nombre+"&marca="+marca+"&detalles="+detalles);
