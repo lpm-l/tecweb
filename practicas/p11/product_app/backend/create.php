@@ -6,11 +6,29 @@
     if(!empty($producto)) {
         // SE TRANSFORMA EL STRING DEL JASON A OBJETO
         $jsonOBJ = json_decode($producto);
-        /**
-         * SUSTITUYE LA SIGUIENTE LÍNEA POR EL CÓDIGO QUE REALICE
-         * LA INSERCIÓN A LA BASE DE DATOS. COMO RESPUESTA REGRESA
-         * UN MENSAJE DE ÉXITO O DE ERROR, SEGÚN SEA EL CASO.
-         */
-        echo '[SERVIDOR] Nombre: '.$jsonOBJ->nombre;
+
+        //Para mayor facilidad se pasan a variables
+        $nombre = $jsonOBJ->nombre; 
+        $marca  = $jsonOBJ->marca;
+        $modelo = $jsonOBJ->modelo;
+        $precio = $jsonOBJ->precio;
+        $detalles = $jsonOBJ->detalles;
+        $unidades = $jsonOBJ->unidades;
+        $imagen   = $jsonOBJ->imagen;
+        $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen)
+        select '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}' 
+        WHERE NOT EXISTS (SELECT 1 FROM productos WHERE nombre = '{$nombre}' AND marca = '{$marca}' AND modelo = '{$modelo}' AND eliminado = 0)";
+        if ( $conexion->query($sql))
+        {
+            if ($conexion->insert_id == 0){
+                echo "ERROR: Producto ya existe en la BD";
+            }else{
+                echo 'ÉXITO: Producto insertado con ID: '.$conexion->insert_id;
+            }
+        }
+        else
+        {
+            echo 'ERROR: El Producto no pudo ser insertado =(';
+        }
     }
 ?>
