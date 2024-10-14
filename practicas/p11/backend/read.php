@@ -34,7 +34,7 @@
         $nombre = $_POST['nombre'];
         $marca = $_POST['marca'];
         $detalles = $_POST['detalles'];
-        $data = sql("id = '{$id}' AND nombre like '%{$nombre}%' AND marca like '%{$marca}%' AND detalles like '%{$detalles}%'", $data);
+        $data = sql("id = '{$id}'", $data);
     
     }elseif ((isset($_POST['nombre']) && isset($_POST['detalles']) && isset($_POST['marca'])) && ($_POST['nombre'] != '' || $_POST['detalles'] != '' || $_POST['marca'] != '')){
         //echo "OTROS";

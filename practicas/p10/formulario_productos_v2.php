@@ -165,7 +165,7 @@
           </select>       
 
            <li><label for="form-model">Modelo:</label> <input type="text" name="model" id="form-model" value="<?=!empty($_POST['modelo'])?$_POST['modelo']:$_GET['modelo'] ?>"></li>
-          <li><label for="form-det">Detalles:</label> <input type="text" name="deta" id="form-det" value="<?=!empty($_POST['det'])?$_POST['det']:$_GET['det'] ?>"></li>
+          <li><label for="form-det">Detalles:</label> <input type="text" name="deta" id="form-det" value="<?=$_POST['det']?>"></li>
           <li><label for="form-precio">Precio:</label> <input type="number" step="0.01" name="precio" id="form-precio" value="<?=!empty($_POST['precio'])?$_POST['precio']:$_GET['precio'] ?>"></li>
           <li><label for="form-uni">Unidades:</label> <input type="number"  name="uni" id="form-uni" value="<?=!empty($_POST['uni'])?$_POST['uni']:$_GET['uni'] ?>"></li>
           <li><label for="form-img">Imagen:</label> <input type="text" name="imgn" id="form-img" value="<?=!empty($_POST['img'])?$_POST['img']:$_GET['img'] ?>"></li>
