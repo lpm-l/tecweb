@@ -114,4 +114,21 @@ function listarProductos() {
       })
     }
   });
+
+
+  $('#product-form').submit(e => {
+    e.preventDefault();
+    let productoJsonString = $('#description').val();
+    var finalJSON = JSON.parse(productoJsonString);
+    finalJSON['nombre'] = $('#name').val();
+    const jString = JSON.stringify(finalJSON,null,2);
+
+    $.post('./backend/product-add.php', jString, (response) => {
+      console.log(typeof(response));
+      $('#product-form').val(baseJSON);
+      listarProductos();
+      alert(JSON.parse(response)['status'] + "\n" + JSON.parse(response)['message']);
+    });
+
+    });
   });
