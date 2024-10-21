@@ -116,6 +116,7 @@ function listarProductos() {
   });
 
 
+  // submit, add product 
   $('#product-form').submit(e => {
     e.preventDefault();
     let productoJsonString = $('#description').val();
@@ -131,4 +132,17 @@ function listarProductos() {
     });
 
     });
+
+        // Delete a Single Task
+    $(document).on('click', '.product-delete', (e) => {
+      if(confirm('¿Desea eliminar este producto?')) {
+        const element = $(this)[0].activeElement.parentElement.parentElement;
+        const id = $(element).attr('productId');
+        $.post('./backend/product-delete.php', {id}, (response) => {
+          listarProductos();
+        });
+      }
+    });
+
   });
+
