@@ -76,14 +76,39 @@ function listarProductos() {
           if(!response.error) {
             let products = JSON.parse(response);
             let template = '';
+            let upd = '';
             products.forEach(producto => {
+                let descripcion = '';
+                descripcion += '<li>precio: '+producto.precio+'</li>';
+                descripcion += '<li>unidades: '+producto.unidades+'</li>';
+                descripcion += '<li>modelo: '+producto.modelo+'</li>';
+                descripcion += '<li>marca: '+producto.marca+'</li>';
+                descripcion += '<li>detalles: '+producto.detalles+'</li>';
+                upd += `
+                <tr productId="${producto.id}">
+                <td>${producto.id}</td>
+                <td>
+                <a href="#" class="product-item">
+                  ${producto.nombre} 
+                </a>
+                </td>
+                <td>${descripcion}</td>
+                <td>
+                  <button class="product-delete btn btn-danger">
+                  Eliminar 
+                  </button>
+                </td>
+                </tr>
+              `;
+
               template += `
                      <li><a href="#" class="product-item">${producto.nombre}</a></li>
-                    ` 
+                    ` ;
             });
             console.log(template)
             $('#product-result').show();
             $('#container').html(template);
+            $('#products').html(upd);
           }
         } 
       })
