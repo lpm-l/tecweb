@@ -8,6 +8,53 @@ var baseJSON = {
     "imagen": "img/default.png"
   };
 
+  function verificarEntradas(finalJSON){
+    var name = finalJSON['nombre']
+    var marca = finalJSON['marca']
+    var modelo = finalJSON['modelo']
+    var precio = finalJSON['precio']
+    var uni = finalJSON['unidades']
+    var det = finalJSON['detalles']
+    var img = finalJSON['imagen']
+
+    var correcto = true;
+    if (name.length > 100 || name.length == 0){
+        correcto = false;
+        alert('Error en Nombre');
+    }
+    if (modelo.length > 25 || !modelo.match(/^[0-9a-zA-Z]+$/)){
+        correcto=false;
+        alert('Error en Modelo');
+    }
+    if (precio < 99.99){
+        correcto=false;
+        alert('Error en Precio');
+    }
+    if (precio == ''){
+        correcto=false;
+        alert('Error en Precio: No puede estar vacio');
+    }
+    if (det.length > 250){
+        correcto=false;
+        alert('Error en Detalles: Demasiado largo');
+    }
+    if (uni == ''){
+        correcto=false;
+        alert('Error en Unidades: No puede estar vacio');
+    }
+    if (uni < 0){
+        correcto=false;
+        alert('Error en Unidades');
+    }
+    if (img == ''){
+        img = "img/default.jpg";
+    }
+    if (correcto){
+        alert('TODO BIEN');
+        return true;
+    }else
+        return false;
+}
 
 
 function createDesc(producto){
@@ -23,6 +70,8 @@ function init() {
     var JsonString = JSON.stringify(baseJSON,null,2);
     document.getElementById("description").value = JsonString;    
 }
+
+
 
 function listarProductos() {
     $.ajax({
@@ -55,6 +104,7 @@ function listarProductos() {
     });
   }
 
+  //READY INICIO; CONSTANTE
   $(document).ready(function() {
     // Global 
     let edit = false;
@@ -113,21 +163,27 @@ function listarProductos() {
   $('#product-form').submit(e => {
     e.preventDefault();
     let productoJsonString = $('#description').val();
+    console.log(productoJsonString);
     var finalJSON = JSON.parse(productoJsonString);
     finalJSON['nombre'] = $('#name').val();
     finalJSON['id'] = $('#productId').val();
-    const jString = JSON.stringify(finalJSON,null,2);
 
-    const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-    console.log(url);
-    $.post(url, jString, (response) => {
-      listarProductos();
-      alert(JSON.parse(response)['status'] + "\n" + JSON.parse(response)['message']);
-      edit = false;
-      $('#Description').val("");
-      $('#name').val("");
-    });
+    //Verificar entradas
+    if (verificarEntradas(finalJSON)){
+      const jString = JSON.stringify(finalJSON,null,2);
 
+      const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+      console.log(url);
+      $.post(url, jString, (response) => {
+        listarProductos();
+        alert(JSON.parse(response)['status'] + "\n" + JSON.parse(response)['message']);
+        edit = false;
+        $('#Description').val("");
+        $('#name').val("");
+      });
+    }else{
+      alert("Errores en el archivo");
+    }
     });
         // Delete a Single Task
     $(document).on('click', '.product-delete', (e) => {
