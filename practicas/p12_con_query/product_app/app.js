@@ -78,10 +78,10 @@ function listarProductos() {
             let template = '';
             products.forEach(producto => {
               template += `
-                     <li><a href="#" class="product-item">${producto.id}</a></li>
+                     <li><a href="#" class="product-item">${producto.nombre}</a></li>
                     ` 
             });
-            console.log(products)
+            console.log(template)
             $('#product-result').show();
             $('#container').html(template);
           }
