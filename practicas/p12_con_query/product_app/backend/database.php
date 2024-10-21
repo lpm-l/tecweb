@@ -6,6 +6,7 @@
         'marketzone'
     );
 
+
     /**
      * NOTA: si la conexión falló $conexion contendrá false
      **/
