@@ -14,7 +14,7 @@ function init() {
     document.getElementById("description").value = JsonString;
 
     // SE LISTAN TODOS LOS PRODUCTOS
-    listarProductos();
+    
 }
 
 function listarProductos() {
@@ -32,17 +32,17 @@ function listarProductos() {
                     descripcion += '<li>marca: '+producto.marca+'</li>';
                     descripcion += '<li>detalles: '+producto.detalles+'</li>';
           template += `
-                  <tr taskId="${producto.id}">
+                  <tr productId="${producto.id}">
                   <td>${producto.id}</td>
                   <td>
-                  <a href="#" class="task-item">
+                  <a href="#" class="product-item">
                     ${producto.nombre} 
                   </a>
                   </td>
                   <td>${descripcion}</td>
                   <td>
-                    <button class="task-delete btn btn-danger">
-                     Delete 
+                    <button class="product-delete btn btn-danger">
+                     Eliminar 
                     </button>
                   </td>
                   </tr>
@@ -53,3 +53,40 @@ function listarProductos() {
     });
   }
 
+  $(document).ready(function() {
+    // Global Settings
+    let edit = false;
+  
+    // Testing Jquery
+    console.log('jquery is working!');
+    listarProductos();
+    $('#product-result').hide();
+
+
+
+  // search key type event
+  $('#search').keyup(function() {
+    if($('#search').val()) {
+      let search = $('#search').val();
+      $.ajax({
+        url: './backend/product-search.php',
+        data: {search},
+        type: 'POST',
+        success: function (response) {
+          if(!response.error) {
+            let products = JSON.parse(response);
+            let template = '';
+            products.forEach(producto => {
+              template += `
+                     <li><a href="#" class="product-item">${producto.id}</a></li>
+                    ` 
+            });
+            console.log(products)
+            $('#product-result').show();
+            $('#container').html(template);
+          }
+        } 
+      })
+    }
+  });
+  });
