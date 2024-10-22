@@ -7,6 +7,12 @@ var baseJSON = {
     "detalles": "NA",
     "imagen": "img/default.png"
   };
+function mensaje (estado, mensaje){
+  return  `
+<li><a>${estado}</a></li>
+<li><a>${mensaje}</a></li>
+` ;
+}
 
   function verificarEntradas(finalJSON){
     var name = finalJSON['nombre']
@@ -173,7 +179,9 @@ function listarProductos() {
       const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
       $.post(url, jString, (response) => {
         listarProductos();
-        $('#container').html(JSON.parse(response)['status'] + "\n" + JSON.parse(response)['message']);
+        //$('#container').html(mensaje(JSON.parse(response['status']),JSON.parse(response['message'])));
+
+        $('#container').html(mensaje(JSON.parse(response)['status'], JSON.parse(response)['message']));
         $('#product-result').show();
         edit = false;
         $('#name').val("");
