@@ -146,10 +146,9 @@ function listarProductos() {
               `;
 
               template += `
-                     <li><a href="#" class="product-item">${producto.nombre}</a></li>
+                     <li><a>${producto.nombre}</a></li>
                     ` ;
             });
-            console.log(template)
             $('#product-result').show();
             $('#container').html(template);
             $('#products').html(upd);
@@ -159,11 +158,10 @@ function listarProductos() {
     }
   });
 
-  // submit, add product 
+  // submit, ADD - EDIT product 
   $('#product-form').submit(e => {
     e.preventDefault();
     let productoJsonString = $('#description').val();
-    console.log(productoJsonString);
     var finalJSON = JSON.parse(productoJsonString);
     finalJSON['nombre'] = $('#name').val();
     finalJSON['id'] = $('#productId').val();
@@ -173,12 +171,11 @@ function listarProductos() {
       const jString = JSON.stringify(finalJSON,null,2);
 
       const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-      console.log(url);
       $.post(url, jString, (response) => {
         listarProductos();
-        alert(JSON.parse(response)['status'] + "\n" + JSON.parse(response)['message']);
+        $('#container').html(JSON.parse(response)['status'] + "\n" + JSON.parse(response)['message']);
+        $('#product-result').show();
         edit = false;
-        $('#Description').val("");
         $('#name').val("");
       });
     }else{
@@ -198,9 +195,9 @@ function listarProductos() {
 
       // Product Id , Set edicion
   $(document).on('click', '.product-item', (e) => {
+    $('#product-result').hide();
     const element = $(this)[0].activeElement.parentElement.parentElement;
     const id = $(element).attr('productId');
-    console.log(id);
     $.post('./backend/product-get.php', {id}, (response) => {
       const product = JSON.parse(response);
       $('#name').val(product.nombre);
@@ -217,10 +214,6 @@ function listarProductos() {
       $('#productId').val(product.id);
 
       edit = true;
-
-      console.log(descripcion);
-      console.log(descripcion);
-      console.log(baseJSON);
     });
     e.preventDefault();
   });
