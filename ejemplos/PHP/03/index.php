@@ -14,7 +14,7 @@
          */
         
         use EJEMPLOS\POO\Cabecera2 as Cabecera;
-        $cab = new Cabecera('El rincon del programador', 'center', 'https://xvideos.com');
+        $cab = new Cabecera('El rincon del programador', 'center', 'https://x.com');
 
         $cab->graficar();
 

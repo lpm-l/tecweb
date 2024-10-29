@@ -19,25 +19,35 @@ function mensaje (estado, mensaje){
     
     let temp = id.value;
     let idOb = id.id;
-    state = false;
-    console.log(idOb);
+    console.log(typeof(temp));
     switch(idOb) {
       case "name":
-        if (modelo.length > 25 || !modelo.match(/^[0-9a-zA-Z]+$/)){
+        if (temp.length > 25 || !temp.match(/^[0-9a-zA-Z]+$/)){
           return false;
         }
         break;
       case "marca":
         break;
       case "modelo":
+        if (temp.length > 25 || !temp.match(/^[0-9a-zA-Z]+$/))
+          return false;
         break;
       case "unidades":
+        if (Number(temp) <= 0){
+          console.log("ononono");
+          return false;}
         break;
       case "precio":
+        if (Number(temp) < 99.99)
+          return false;
         break;
       case "detalle":
+        if (temp.length > 250)
+          return false;
         break;
       case "imagen":
+        if (temp == '')
+          id.value = "http://localhost/img/default.jpg";
           break;
       default:
         console.log('def');
@@ -47,11 +57,10 @@ function mensaje (estado, mensaje){
     if ($('#name').val().length > 100 || $('#name').val().length == 0){
         return false;
     }
-   /*  if (modelo.length > 25 || !modelo.match(/^[0-9a-zA-Z]+$/)){
-        correcto=false;
+   /*  
         alert('Error en Modelo');
     }
-    if (precio < 99.99){
+    if (){
         correcto=false;
         alert('Error en Precio');
     }
@@ -211,7 +220,7 @@ function listarProductos() {
     });
 
       // Product Id , Set edicion
-    $(document).on('click', '.product-form', (e) => {
+    $(document).on('click', '.product-item', (e) => {
       $('#product-result').hide();
       const element = $(this)[0].activeElement.parentElement.parentElement;
       const id = $(element).attr('productId');
@@ -224,18 +233,32 @@ function listarProductos() {
       $('#imagen').val(product.imagen);
       $('#modelo').val(product.modelo);
       $('#marca').val(product.marca);
-
+      $('#name').val("TEST");
       edit = true;
     });
     e.preventDefault();
   });
-
+/*
     // Revision onmouseleave de los campos del producto
-    $(document).on('click', '.form-control',(e) => {
-      if (verificarEntradas($(this)[0].activeElement)){
-        $(this)[0].activeElement.style.color = "red";
-        console.log($(this)[0].activeElement);
+    $(document).on('blur', '.form-control',(e) => {
+      let elem = $(this)[0].activeElement;
+      //console.log($(this)[0].activeElement);
+      if (!verificarEntradas(elem)){
+        elem.style.color = "red";
+        console.log("ERRA");
       }
     });
+
+*/
+
+$('.form-control').blur(function(){
+  console.log($('.form-control'));
+  let elem = $(this)[0].activeElement;
+  //console.log($(this)[0].activeElement);
+  if (!verificarEntradas(elem)){
+    elem.style.color = "red";
+    console.log("ERRA");
+  }
+});
   });
 
