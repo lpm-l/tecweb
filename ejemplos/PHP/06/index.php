@@ -9,7 +9,7 @@
     <?php
         include_once __DIR__.'/Opcion.php';
         include_once __DIR__.'/Menu.php';
-        $menu1 = new Menu('horizontal');
+        $menu1 = new Menu('vertical');
         $opc1 = new Opcion("NO","https://www.twitter.com", "#C3D9FF");
         $menu1->insertar_opcion($opc1);
 
