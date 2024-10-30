@@ -19,7 +19,7 @@
         $opc3 = new Opcion("In", "https://www.classroom.com",'#C3D9FF' );
         $menu1->insertar_opcion($opc3);
 
-
+                    
         $menu1->graficar();
     ?>
 </body>
