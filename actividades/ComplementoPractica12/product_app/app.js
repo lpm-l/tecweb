@@ -1,5 +1,6 @@
 // JSON BASE A MOSTRAR EN FORMULARIO
 var baseJSON = {
+    "nombre": "DEF",
     "precio": 0.0,
     "unidades": 1,
     "modelo": "XX-000",
@@ -8,6 +9,8 @@ var baseJSON = {
     "imagen": "img/default.png"
 };
 
+var temp;
+var k="hm";
 function mensaje (estado, mensaje){
   return  `
 <li><a>${estado}</a></li>
@@ -15,75 +18,69 @@ function mensaje (estado, mensaje){
 ` ;
 }
 
-  function verificarEntradas(id){
-    
-    let temp = id.value;
-    let idOb = id.id;
-    console.log(typeof(temp));
-    switch(idOb) {
-      case "name":
-        if (temp.length > 25 || !temp.match(/^[0-9a-zA-Z]+$/)){
-          return false;
-        }
-        break;
-      case "marca":
-        break;
-      case "modelo":
-        if (temp.length > 25 || !temp.match(/^[0-9a-zA-Z]+$/))
-          return false;
-        break;
-      case "unidades":
-        if (Number(temp) <= 0){
-          console.log("ononono");
-          return false;}
-        break;
-      case "precio":
-        if (Number(temp) < 99.99)
-          return false;
-        break;
-      case "detalle":
-        if (temp.length > 250)
-          return false;
-        break;
-      case "imagen":
-        if (temp == '')
-          id.value = "http://localhost/img/default.jpg";
+  function verificarEntradas(obj){
+    let id=obj.id;
+    let value=obj.value;
+    obj.style.color = "red";
+    k="nyo";
+    if (id!="detalle" && id!="imagen" && value==""){
+      temp += "<li><a>ERROR. NO PUEDE ESTAR VACIO</a></li>";
+      return false;
+    }else{
+      switch(id) {
+        case "name":
+          if (value.length > 25 || !value.match(/^[0-9a-zA-Z]+$/)){
+            temp += "<li><a>Error en nombre</a></li>";
+            return false;
+          }
           break;
-      default:
-        console.log('def');
-    } 
+        case "marca":
+          break;
+        case "modelo":
+          if (value.length > 25 || !value.match(/^[0-9a-zA-Z]+$/)){
+            temp += "<li><a>Error en modelo</a></li>";
 
+            return false;}
+          break;
+        case "unidades":
+          if (Number(value) <= 0){
+            temp += "<li><a>Error en unidades. No puede ser menor a 0</a></li>";
 
-    if ($('#name').val().length > 100 || $('#name').val().length == 0){
-        return false;
+            return false;}
+          break;
+        case "precio":
+          if (Number(value) < 99.99){
+            temp += "<li><a>Error en precio. Demasiado bajo</a></li>";
+            return false;}
+          break;
+        case "detalle":
+          if (value.length > 250){
+            temp += "<li><a>Error en detalles; demasiado largo</a></li>";
+            return false;}
+          break;
+        case "imagen":
+          if (value == '')
+            obj.value = "http://localhost/img/default.jpg";
+          break;
+        default:
+          console.log('def');
+      } 
     }
-   /*  
-        alert('Error en Modelo');
-    }
-    if (){
-        correcto=false;
-        alert('Error en Precio');
-    }
-    if (precio == ''){
-        correcto=false;
-        alert('Error en Precio: No puede estar vacio');
-    }
-    if (det.length > 250){
-        correcto=false;
-        alert('Error en Detalles: Demasiado largo');
-    }
-    if (uni == ''){
-        correcto=false;
-        alert('Error en Unidades: No puede estar vacio');
-    }
-    if (uni < 0){
-        correcto=false;
-        alert('Error en Unidades');
-    }
-    if (img == ''){
-        img = "img/default.jpg";
-    } */
+    obj.style.color = "";
+    k="paso";
+    return true;
+}
 
+  function checkAll(container){
+    correct = true;
+    temp = "";
+    for (i=0; i<6; i++){
+      if (!verificarEntradas(container[i])){
+        correct = false;
+      }
+    }
+    $('#estado').html(temp);
+    return correct;
 }
 
 function createDesc(producto){
@@ -185,6 +182,29 @@ function listarProductos() {
   // submit, ADD - EDIT product 
   $('#product-form').submit(e => {
     e.preventDefault();
+    if (!checkAll($('#product-form')[0])){
+      $('#product-estado').show();   
+      console.log(k);
+    }else{
+      
+      $('#product-estado').hide(); 
+      let modJson = baseJSON;
+      console.log(typeof(modJson));
+      modJson['nombre'] = $('#name').val();
+      modJson['id'] = $('#productId').val();
+      modJson["precio"]= $('#precio').val();
+      modJson["unidades"]= $('#unidades').val();
+      modJson["modelo"]= $('#modelo').val();
+      modJson["marca"]= $('#marca').val();
+      modJson["detalles"]= $('#detalle').val();
+      modJson["imagen"]= $('#imagen').val();
+
+      const jString = JSON.stringify(modJson,null,2);
+
+      console.log(jString);
+    }
+    
+/*     e.preventDefault();
     let productoJsonString = $('#description').val();
     var finalJSON = JSON.parse(productoJsonString);
     finalJSON['nombre'] = $('#name').val();
@@ -206,8 +226,9 @@ function listarProductos() {
       });
     }else{
       alert("Errores en el archivo");
-    }
+    } */
     });
+
         // Delete a Single Task
     $(document).on('click', '.product-delete', (e) => {
       if(confirm('¿Desea eliminar este producto?')) {
@@ -238,27 +259,18 @@ function listarProductos() {
     });
     e.preventDefault();
   });
-/*
-    // Revision onmouseleave de los campos del producto
-    $(document).on('blur', '.form-control',(e) => {
-      let elem = $(this)[0].activeElement;
-      //console.log($(this)[0].activeElement);
-      if (!verificarEntradas(elem)){
-        elem.style.color = "red";
-        console.log("ERRA");
-      }
-    });
-
-*/
 
 $('.form-control').blur(function(){
-  console.log($('.form-control'));
-  let elem = $(this)[0].activeElement;
-  //console.log($(this)[0].activeElement);
-  if (!verificarEntradas(elem)){
-    elem.style.color = "red";
-    console.log("ERRA");
+
+  $('#product-estado').hide();
+  temp = "";
+  if (!verificarEntradas($(this)[0])){
+    $('#product-estado').show();
+    $('#estado').html(temp);
+    console.log("ERA");
+  }else{
+    $(this)[0].style.color = "";
   }
+}); 
 });
-  });
 
