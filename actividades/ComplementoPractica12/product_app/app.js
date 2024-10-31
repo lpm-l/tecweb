@@ -7,10 +7,10 @@ var baseJSON = {
     "marca": "NA",
     "detalles": "NA",
     "imagen": "img/default.png"
+    
 };
 
 var temp;
-var k="hm";
 function mensaje (estado, mensaje){
   return  `
 <li><a>${estado}</a></li>
@@ -22,14 +22,13 @@ function mensaje (estado, mensaje){
     let id=obj.id;
     let value=obj.value;
     obj.style.color = "red";
-    k="nyo";
     if (id!="detalle" && id!="imagen" && value==""){
-      temp += "<li><a>ERROR. NO PUEDE ESTAR VACIO</a></li>";
+      temp += `<li><a>ERROR. ${id} NO PUEDE ESTAR VACIO</a></li>`;
       return false;
     }else{
       switch(id) {
         case "name":
-          if (value.length > 25 || !value.match(/^[0-9a-zA-Z]+$/)){
+          if (value.length > 25 || !value.match(/^[0-9a-zA-Z ]+$/)){
             temp += "<li><a>Error en nombre</a></li>";
             return false;
           }
@@ -63,11 +62,10 @@ function mensaje (estado, mensaje){
             obj.value = "http://localhost/img/default.jpg";
           break;
         default:
-          console.log('def');
+          console.log('Undefined...');
       } 
     }
     obj.style.color = "";
-    k="paso";
     return true;
 }
 
@@ -183,13 +181,13 @@ function listarProductos() {
   $('#product-form').submit(e => {
     e.preventDefault();
     if (!checkAll($('#product-form')[0])){
+      temp += '<li style="color: red;"><a>No se pudo agregar el producto</a></li>';
       $('#product-estado').show();   
-      console.log(k);
+      $('#estado').html(temp);
     }else{
       
       $('#product-estado').hide(); 
       let modJson = baseJSON;
-      console.log(typeof(modJson));
       modJson['nombre'] = $('#name').val();
       modJson['id'] = $('#productId').val();
       modJson["precio"]= $('#precio').val();
@@ -200,34 +198,18 @@ function listarProductos() {
       modJson["imagen"]= $('#imagen').val();
 
       const jString = JSON.stringify(modJson,null,2);
-
-      console.log(jString);
-    }
-    
-/*     e.preventDefault();
-    let productoJsonString = $('#description').val();
-    var finalJSON = JSON.parse(productoJsonString);
-    finalJSON['nombre'] = $('#name').val();
-    finalJSON['id'] = $('#productId').val();
-
-    //Verificar entradas
-    if (verificarEntradas(finalJSON)){
-      const jString = JSON.stringify(finalJSON,null,2);
-
       const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+      console.log(jString);
       $.post(url, jString, (response) => {
         listarProductos();
-        //$('#container').html(mensaje(JSON.parse(response['status']),JSON.parse(response['message'])));
-
-        $('#container').html(mensaje(JSON.parse(response)['status'], JSON.parse(response)['message']));
-        $('#product-result').show();
+        console.log(response);
+        $('#estado').html(mensaje(JSON.parse(response)['status'], JSON.parse(response)['message']));
+        $('#product-estado').show();
         edit = false;
         $('#name').val("");
       });
-    }else{
-      alert("Errores en el archivo");
-    } */
-    });
+    }
+    }); 
 
         // Delete a Single Task
     $(document).on('click', '.product-delete', (e) => {
@@ -254,23 +236,49 @@ function listarProductos() {
       $('#imagen').val(product.imagen);
       $('#modelo').val(product.modelo);
       $('#marca').val(product.marca);
-      $('#name').val("TEST");
+      $('#productId').val(product.id);
       edit = true;
     });
     e.preventDefault();
   });
 
-$('.form-control').blur(function(){
+  // on blur cambiar producto a agregar/editar
+  $('.form-control').blur(function(){
+    $('#product-estado').hide();
+    temp = "";
+    if (!verificarEntradas($(this)[0])){
+      $('#product-estado').show();
+      $('#estado').html(temp);
+      console.log("ERA");
+    }else{
+      $(this)[0].style.color = "";
+    }
+  }); 
 
-  $('#product-estado').hide();
-  temp = "";
-  if (!verificarEntradas($(this)[0])){
-    $('#product-estado').show();
-    $('#estado').html(temp);
-    console.log("ERA");
-  }else{
-    $(this)[0].style.color = "";
-  }
-}); 
+    // search key type event
+    $('#name').keyup(function() {
+      if($('#name').val()) {
+        let search = $('#name').val();
+        $.ajax({
+          url: './backend/product-search-repetido.php',
+          data: {search},
+          type: 'POST',
+          success: function (response) {
+            if(!response.error) {
+              const resultado = JSON.parse(response);
+              console.log(resultado['len']);
+              if (resultado['len'] != 0){
+                $('#estado').html('<li><a>Este producto ya existe</a></li>');
+                $('#product-estado').show();   
+              }else{
+                $('#product-estado').hide();
+              }
+            }
+          } 
+        })
+      }
+    });
+
+
 });
 
