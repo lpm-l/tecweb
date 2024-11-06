@@ -1,8 +1,10 @@
 <?php
-
-  include('database.php');
-
-    
+  use API\BACKEND\Products as DB;
+  require_once __DIR__ . '/myapi/Products.php';
+  $db1 = new DB();
+  $db1->edit();
+  echo $db1->getData()
+/*     
     $producto = file_get_contents('php://input');
     $data = array(
         'status'  => 'error',
@@ -24,6 +26,6 @@
         $conexion->close();
 
     }
-    echo json_encode($data, JSON_PRETTY_PRINT);
+    echo json_encode($data, JSON_PRETTY_PRINT); */
 
 ?>

@@ -96,7 +96,6 @@ function listarProductos() {
       url: './backend/product-list.php',
       type: 'GET',
       success: function(response) {
-        console.log(response);
         const producto = JSON.parse(response);
         let template = '';
         producto.forEach(producto => {
@@ -200,10 +199,8 @@ function listarProductos() {
 
       const jString = JSON.stringify(modJson,null,2);
       const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-      console.log(jString);
       $.post(url, jString, (response) => {
         listarProductos();
-        console.log(response);
         $('#estado').html(mensaje(JSON.parse(response)['status'], JSON.parse(response)['message']));
         $('#product-estado').show();
         edit = false;
@@ -250,7 +247,6 @@ function listarProductos() {
     if (!verificarEntradas($(this)[0])){
       $('#product-estado').show();
       $('#estado').html(temp);
-      console.log("ERA");
     }else{
       $(this)[0].style.color = "";
     }
@@ -266,8 +262,8 @@ function listarProductos() {
           type: 'POST',
           success: function (response) {
             if(!response.error) {
+              console.log(response);
               const resultado = JSON.parse(response);
-              console.log(resultado['len']);
               if (resultado['len'] != 0){
                 $('#estado').html('<li><a>Este producto ya existe</a></li>');
                 $('#product-estado').show();   
