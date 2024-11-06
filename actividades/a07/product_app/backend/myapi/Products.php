@@ -1,4 +1,6 @@
 <?php
+    namespace API\BACKEND;
+    include_once __DIR__.'/DataBase.php';
     class Products extends DataBase{
         public $data;
         public function __construct($user = "root",$pass="Z#~W2xwamQ69jQq", $db="marketzone"){
@@ -20,23 +22,24 @@
                 $jsonOBJ = json_decode($producto);
                 // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE
                 $sql = "SELECT * FROM productos WHERE nombre = '{$jsonOBJ->nombre}' AND eliminado = 0";
-                $result = $conexion->query($sql);
+                $result = $this->conexion->query($sql);
                 
                 if ($result->num_rows == 0) {
-                    $conexion->set_charset("utf8");
+                    $this->conexion->set_charset("utf8");
                     $sql = "INSERT INTO productos VALUES (null, '{$jsonOBJ->nombre}', '{$jsonOBJ->marca}', '{$jsonOBJ->modelo}', {$jsonOBJ->precio}, '{$jsonOBJ->detalles}', {$jsonOBJ->unidades}, '{$jsonOBJ->imagen}', 0)";
-                    if($conexion->query($sql)){
+                    if($this->conexion->query($sql)){
                         $data['status'] =  "success";
                         $data['message'] =  "Producto agregado";
                     } else {
-                        $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
+                        $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($this->conexion);
                     }
                 }
 
                 $result->free();
                 // Cierra la conexion
-                $conexion->close();
+                $this->conexion->close();
             }
+            $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
         public function delete(){
@@ -47,14 +50,15 @@
                 $id = $_POST['id'];
                 // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
                 $sql = "UPDATE productos SET eliminado=1 WHERE id = {$id}";
-                if ( $conexion->query($sql) ) {
+                if ( $this->conexion->query($sql) ) {
                     $data['status'] =  "success";
                     $data['message'] =  "Producto eliminado";
                 } else {
-                    $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
+                    $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($this->conexion);
                 }
-                $conexion->close();
+                $this->conexion->close();
             } 
+            $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
         public function edit(){
@@ -67,18 +71,19 @@
                 $jsonOBJ = json_decode($producto);
         
                 $sql = "UPDATE productos SET nombre = '{$jsonOBJ->nombre}', marca = '{$jsonOBJ->marca}', modelo = '{$jsonOBJ->modelo}', precio = {$jsonOBJ->precio}, detalles = '{$jsonOBJ->detalles}', unidades = {$jsonOBJ->unidades}, imagen = '{$jsonOBJ->imagen}' WHERE id = $jsonOBJ->id";
-                $result =  $conexion->query($sql);
+                $result =  $this->conexion->query($sql);
         
-                if($conexion->query($sql)){
+                if($this->conexion->query($sql)){
                     $data['status'] =  "success";
                     $data['message'] =  "Producto modificado";
                 } else {
-                    $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
+                    $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($this->conexion);
                 }
                 // Cierra la conexion
-                $conexion->close();
+                $this->conexion->close();
         
             }
+            $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
         public function list(){
@@ -86,7 +91,7 @@
             $data = array();
 
             // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-            if ( $result = $conexion->query("SELECT * FROM productos WHERE eliminado = 0") ) {
+            if ( $result = $this->conexion->query("SELECT * FROM productos WHERE eliminado = 0") ) {
                 // SE OBTIENEN LOS RESULTADOS
                 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -100,9 +105,10 @@
                 }
                 $result->free();
             } else {
-                die('Query Error: '.mysqli_error($conexion));
+                die('Query Error: '.mysqli_error($this->conexion));
             }
-            $conexion->close();
+            $this->conexion->close();
+            $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
         public function search(){
@@ -113,7 +119,7 @@
                 $search = $_POST['search'];
                 // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
                 $sql = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
-                if ( $result = $conexion->query($sql) ) {
+                if ( $result = $this->conexion->query($sql) ) {
                     // SE OBTIENEN LOS RESULTADOS
                     $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -127,10 +133,11 @@
                     }
                     $result->free();
                 } else {
-                    die('Query Error: '.mysqli_error($conexion));
+                    die('Query Error: '.mysqli_error($this->conexion));
                 }
-                $conexion->close();
+                $this->conexion->close();
             } 
+            $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
         public function single(){
@@ -140,7 +147,7 @@
             if( isset($_POST['id']) ) {
                 $id = $_POST['id'];
                 $sql = "SELECT * from productos WHERE id = {$id}";
-                if ( $result = $conexion->query($sql) ) {
+                if ( $result = $this->conexion->query($sql) ) {
                     // SE OBTIENEN LOS RESULTADOS
                     $rows = $result->fetch_array(MYSQLI_ASSOC);
 
@@ -152,10 +159,11 @@
                     }
                     $result->free();
                 } else {
-                    die('Query Error: '.mysqli_error($conexion));
+                    die('Query Error: '.mysqli_error($this->conexion));
                 }
-                $conexion->close();
+                $this->conexion->close();
             } 
+            $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
         public function singleByName(){
@@ -165,7 +173,7 @@
             if( isset($_POST['nombre']) ) {
                 $nombre = $_POST['nombre'];
                 $sql = "SELECT * from productos WHERE nombre = {$nombre}";
-                if ( $result = $conexion->query($sql) ) {
+                if ( $result = $this->conexion->query($sql) ) {
                     // SE OBTIENEN LOS RESULTADOS
                     $rows = $result->fetch_array(MYSQLI_ASSOC);
                     if(!is_null($rows)) {
@@ -176,14 +184,16 @@
                     }
                     $result->free();
                 } else {
-                    die('Query Error: '.mysqli_error($conexion));
+                    die('Query Error: '.mysqli_error($this->conexion));
                 }
-                $conexion->close();
+                $this->conexion->close();
             } 
+            $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
-        
-
+        public function getData(){
+            return $this->data;
+        }
     }
 
 ?>

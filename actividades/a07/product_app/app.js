@@ -96,6 +96,7 @@ function listarProductos() {
       url: './backend/product-list.php',
       type: 'GET',
       success: function(response) {
+        console.log(response);
         const producto = JSON.parse(response);
         let template = '';
         producto.forEach(producto => {
