@@ -2,7 +2,7 @@
     use API\BACKEND\Products as DB;
     require_once __DIR__ . '/myapi/Products.php';
     $db1 = new DB();
-    $db1->delete();
+    $db1->delete($_POST['id']);
     echo $db1->getData()
 
 /*     include_once __DIR__.'/database.php';

@@ -2,7 +2,7 @@
   use API\BACKEND\Products as DB;
   require_once __DIR__ . '/myapi/Products.php';
   $db1 = new DB();
-  $db1->edit();
+  $db1->edit(file_get_contents('php://input'));
   echo $db1->getData()
 /*     
     $producto = file_get_contents('php://input');
