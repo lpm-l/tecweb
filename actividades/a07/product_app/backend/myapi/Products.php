@@ -10,7 +10,7 @@
 
         }
 
-        public function add(){
+        public function add($producto=20){
             // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
             $producto = file_get_contents('php://input');
             $data = array(
@@ -42,7 +42,7 @@
             $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
-        public function delete(){
+        public function delete($id=10){
                 // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
             $data = array( );
             // SE VERIFICA HABER RECIBIDO EL ID
@@ -61,7 +61,7 @@
             $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
-        public function edit(){
+        public function edit($producto=10){
             $producto = file_get_contents('php://input');
             $data = array(
                 'status'  => 'error',
@@ -111,7 +111,7 @@
             $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
-        public function search(){
+        public function search($search=20){
             // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
             $data = array();
             // SE VERIFICA HABER RECIBIDO EL ID
@@ -140,7 +140,7 @@
             $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
-        public function single(){
+        public function single($id = 0){
             // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
             $data = array();
             // SE VERIFICA HABER RECIBIDO EL ID
@@ -166,7 +166,7 @@
             $this->data =  json_encode($data, JSON_PRETTY_PRINT);
         }
 
-        public function singleByName(){
+        public function singleByName($temp="Nada"){
             // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
             $data = array();
             //VERTIFICA SEARCH
