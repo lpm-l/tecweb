@@ -212,9 +212,12 @@ function listarProductos() {
         // Delete a Single Task
     $(document).on('click', '.product-delete', (e) => {
       if(confirm('¿Desea eliminar este producto?')) {
+        $('#product-estado').hide();
         const element = $(this)[0].activeElement.parentElement.parentElement;
         const id = $(element).attr('productId');
         $.post('./backend/product-delete.php', {id}, (response) => {
+          $('#estado').html(mensaje(JSON.parse(response)['status'], JSON.parse(response)['message']));
+          $('#product-estado').show();
           listarProductos();
         });
       }
