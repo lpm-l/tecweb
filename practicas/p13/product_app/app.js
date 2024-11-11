@@ -96,6 +96,7 @@ function listarProductos() {
       url: './backend/product-list.php',
       type: 'GET',
       success: function(response) {
+        
         const producto = JSON.parse(response);
         let template = '';
         producto.forEach(producto => {
@@ -216,6 +217,7 @@ function listarProductos() {
         const element = $(this)[0].activeElement.parentElement.parentElement;
         const id = $(element).attr('productId');
         $.post('./backend/product-delete.php', {id}, (response) => {
+          console.log(response);
           $('#estado').html(mensaje(JSON.parse(response)['status'], JSON.parse(response)['message']));
           $('#product-estado').show();
           listarProductos();

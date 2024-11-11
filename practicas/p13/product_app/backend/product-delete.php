@@ -1,7 +1,7 @@
 <?php
-    use API\BACKEND\Products as DB;
-    require_once __DIR__ . '/myapi/Products.php';
-    $db1 = new DB();
+    use backend\Delete\Delete;
+    require_once __DIR__ . '/start.php';
+    $db1 = new Delete();
     $db1->delete($_POST['id']);
     echo $db1->getData()
 ?>
