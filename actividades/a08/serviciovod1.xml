@@ -1,0 +1,117 @@
+<CatalogoVOD>
+    <cuenta>
+        <correo>
+            luis1@gmail.com
+        </correo>
+        <perfiles>
+            <perfil>
+                <usuario> LUIS1  </usuario>
+                <idioma> ESPAÑOL </idioma>
+            </perfil>
+            <perfil>
+                <usuario> LUIS2 </usuario>
+                <idioma> INGLÉS </idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre> Drama </nombre>
+                <titulo>
+                    <nombre> PELI DRAMA 1 </nombre>
+                    <duracion> 80 minutos </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre> PELI DRAMA 2 </nombre>
+                    <duracion> 70 minutos </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre> PELI DRAMA 3 </nombre>
+                    <duracion> 210 minutos </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre> PELI DRAMA 4 </nombre>
+                    <duracion> 70 minutos </duracion>
+                </titulo>
+            </genero>
+
+            <genero>
+                <nombre> Horror </nombre>
+                <titulo>
+                    <nombre> PELI HORROR 1 </nombre>
+                    <duracion> 75 minutos  </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre> PELI HORROR 2 </nombre>
+                    <duracion>75 minutos </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre> PELI HORROR 3 </nombre>
+                    <duracion> 75 minutos </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>PELI HORROR 4</nombre>
+                    <duracion>75 minutos</duracion>
+                </titulo>
+            </genero>
+
+        </peliculas>
+
+        <programas>
+            <genero>
+                <nombre>Detectives</nombre>
+                <titulo>
+                    <nombre>Serie Detective 1</nombre>
+                    <duracion>25 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Serie Detective 2</nombre>
+                    <duracion>27 minutos</duracion>
+                </titulo>
+                
+                <titulo>
+                    <nombre>Serie Detective 3</nombre>
+                    <duracion>28 minutos</duracion>
+                </titulo>
+                
+                <titulo>
+                    <nombre>Serie Detective 4</nombre>
+                    <duracion>100 minutos</duracion>
+                </titulo>
+            </genero>
+
+            <genero>
+                <nombre>Anime</nombre>
+                <titulo>
+                    <nombre>Serie Anime 1</nombre>
+                    <duracion>18 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Serie Anime 2</nombre>
+                    <duracion>18 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Serie Anime 3</nombre>
+                    <duracion>18 minutos</duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Serie Anime 4</nombre>
+                    <duracion>18 minutos</duracion>
+                </titulo>
+            </genero>
+
+        </programas>
+    </contenido>
+</CatalogoVOD>

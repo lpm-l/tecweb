@@ -1,0 +1,89 @@
+<CatalogoVOD>
+    <cuenta correo="luis1@gmail.com">
+        <perfiles>
+            <perfil usuario="LUIS1" idioma="ESPAÑOL"/>
+            <perfil usuario="LUIS2" idioma="INGLÉS"/>
+        </perfiles>
+        
+    </cuenta>
+
+    <contenido>
+        <peliculas>
+            <genero nombre="Drama">
+                <titulo duracion="80">
+                    <nombre> PELI DRAMA 1 </nombre>
+                </titulo>
+
+                <titulo duracion="70">
+                    <nombre> PELI DRAMA 2 </nombre>
+                </titulo>
+
+                <titulo duracion="210">
+                    <nombre> PELI DRAMA 3 </nombre>
+                </titulo>
+
+                <titulo duracion="70">
+                    <nombre> PELI DRAMA 4 </nombre>
+                </titulo>
+            </genero>
+
+            <genero nombre="Horror">
+                <titulo duracion="75">
+                    <nombre> PELI HORROR 1 </nombre>
+                </titulo>
+
+                <titulo duracion="75">
+                    <nombre> PELI HORROR 2 </nombre>
+                </titulo>
+
+                <titulo duracion="75">
+                    <nombre> PELI HORROR 3 </nombre>
+                </titulo>
+
+                <titulo duracion="75">
+                    <nombre>PELI HORROR 4</nombre>
+                </titulo>
+            </genero>
+
+        </peliculas>
+
+        <programas>
+            <genero nombre="Detectives">
+                <titulo duracion="25">
+                    <nombre>Serie Detective 1</nombre>
+                </titulo>
+
+                <titulo duracion="27">
+                    <nombre>Serie Detective 2</nombre>
+                </titulo>
+                
+                <titulo duracion="28">
+                    <nombre>Serie Detective 3</nombre>
+                </titulo>
+                
+                <titulo duracion="100">
+                    <nombre>Serie Detective 4</nombre>
+                </titulo>
+            </genero>
+
+            <genero nombre="Anime">
+                <titulo duracion="18">
+                    <nombre>Serie Anime 1</nombre>
+                </titulo>
+
+                <titulo duracion="18">
+                    <nombre>Serie Anime 2</nombre>
+                </titulo>
+
+                <titulo duracion="18">
+                    <nombre>Serie Anime 3</nombre>
+                </titulo>
+
+                <titulo duracion="18">
+                    <nombre>Serie Anime 4</nombre>
+                </titulo>
+            </genero>
+
+        </programas>
+    </contenido>
+</CatalogoVOD>
