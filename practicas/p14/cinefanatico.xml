@@ -1,0 +1,9 @@
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico>
+    <tarjeta noserie="001" visitas="3" puntos="150">
+        <nombre>LUIS</nombre>
+        <correo>luis@gmail.com</correo>
+        <telefono tipo="movil">222222222</telefono>
+        <telefono tipo="casa">2222222</telefono>
+    </tarjeta>
+</cinefanatico>
